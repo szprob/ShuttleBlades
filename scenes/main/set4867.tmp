@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=3 uid="uid://7ycbxy86fjij"]
+
+[ext_resource type="Script" path="res://scripts/main/settings.gd" id="1_2koos"]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2koos")
+
+[node name="resolution_option" type="OptionButton" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 36.0
+offset_right = 34.0
+offset_bottom = 56.0
+
+[node name="fullscreen_checkbox" type="CheckBox" parent="."]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 82.0
+offset_right = 108.0
+offset_bottom = 113.0
+text = "full screen"
+
+[node name="music_volume_slider" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 68.0
+offset_right = 14.0
+offset_bottom = 84.0
+
+[node name="sfx_volume_slider" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 103.0
+offset_top = 69.0
+offset_right = 111.0
+offset_bottom = 85.0
+
+[node name="back_button" type="Button" parent="."]
+layout_mode = 0
+offset_top = 120.0
+offset_right = 69.0
+offset_bottom = 151.0
+text = "confirm"
+
+[connection signal="pressed" from="back_button" to="." method="_on_back_button_pressed"]

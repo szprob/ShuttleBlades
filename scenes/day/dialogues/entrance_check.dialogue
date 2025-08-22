@@ -1,0 +1,43 @@
+~ title
+if GameManager.get_day_phase() == 1:
+	????: 一张普通的床,我好像睡了很久,感觉躺上去就能轻易睡着。
+	????: 先四处看看吧。
+	=> END
+if GameManager.get_day_phase() < 4:
+	Joey: [[我得先找找有没有其他线索|先四处看看吧,肯定能找到些什么]]
+	=> END
+if GameManager.get_day_phase() == 4:
+	空床[#thing]: (准备好睡觉了吗?)
+	- 是
+		set GameManager.game_state['has_slept'] = true
+		do GameManager.set_day_phase(5)
+		do GameManager.switch_day_to_dream("res://scenes/dreams/bigworldv2/chase_real.tscn")
+		# do GameManager.switch_day_to_dream("res://scenes/dreams/stage1/game.tscn")
+		=> END
+	- 否
+		=> END
+if GameManager.get_day_phase() <= 6:
+	Joey: 才刚睡醒,去检查一下柜子吧
+	=> END
+if GameManager.get_day_phase() == 7:
+	if GameManager.is_room2_cleared():
+		Joey[#joey_normal]: 看起来已经没什么线索了,回去吧
+		do GameManager.set_day_phase(8)
+		do GameManager.switch_day_to_dream("res://scenes/dreams/bigworldv2/castel.tscn")
+		#do GameManager.switch_day_to_dream("res://scenes/dreams/stage1/game.tscn")
+		=> END
+	else:
+		Joey[#joey_normal]: 再看看还有什么线索吧
+		=> END
+if GameManager.get_day_phase() == 8:
+	Joey[#joey_normal]: 不知道怎么战胜她,下楼找找线索吧
+	=> END
+if GameManager.get_day_phase() == 9:
+	空床[#thing]: (准备好睡觉了吗?)
+	- 是
+		do GameManager.set_day_phase(10)
+		do GameManager.switch_day_to_dream("res://scenes/dreams/bigworldv2/final.tscn")
+		# do GameManager.switch_day_to_dream("res://scenes/dreams/stage1/game.tscn")
+		=> END
+	- 否
+		=> END

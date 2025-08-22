@@ -1,0 +1,441 @@
+[gd_scene load_steps=30 format=3 uid="uid://b5t052kpld60e"]
+
+[ext_resource type="PackedScene" uid="uid://blydc865qnepa" path="res://scenes/player/player_day.tscn" id="1_3un87"]
+[ext_resource type="PackedScene" uid="uid://bmq25pi5e8wan" path="res://scenes/day/room1/room1.tscn" id="1_fv2j8"]
+[ext_resource type="PackedScene" uid="uid://cuvs1inu1bmr" path="res://scenes/day/room2/room2.tscn" id="2_07116"]
+[ext_resource type="Script" path="res://scenes/day/room1/track_camera.gd" id="3_mf3ak"]
+[ext_resource type="Script" path="res://scripts/day/enter_animation.gd" id="3_v5xrb"]
+[ext_resource type="PackedScene" uid="uid://byljde6sgcfrv" path="res://scenes/player/actionable.tscn" id="4_epc0u"]
+[ext_resource type="Resource" uid="uid://bvjxsl5w8bm2m" path="res://scenes/day/dialogues/room2.dialogue" id="5_m6frk"]
+[ext_resource type="PackedScene" uid="uid://cydw848ah3caw" path="res://scenes/day/room2/mirror.tscn" id="6_imkld"]
+[ext_resource type="Resource" uid="uid://6a0f0mm58veq" path="res://scenes/day/dialogues/openning.dialogue" id="7_oohak"]
+[ext_resource type="PackedScene" uid="uid://dodqd8727m8io" path="res://scenes/day/display_room/display_room.tscn" id="8_8db2n"]
+[ext_resource type="Texture2D" uid="uid://djxkq7gwjy0fj" path="res://assets/sprites/day/new_room/door1.png" id="8_hvk6s"]
+[ext_resource type="Script" path="res://scripts/day/left_door.gd" id="9_cfwog"]
+[ext_resource type="PackedScene" uid="uid://67xd1lwqas7a" path="res://scenes/day/introduction/introduction.tscn" id="9_rumt0"]
+[ext_resource type="PackedScene" uid="uid://c40qc8gq3f3g3" path="res://scenes/day/room3/room3.tscn" id="10_lkum6"]
+[ext_resource type="PackedScene" uid="uid://c8flj66fr2ymi" path="res://scenes/day/inventory/inventory.tscn" id="11_15jyv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_igu4s"]
+size = Vector2(28, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tpaul"]
+size = Vector2(20, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rl6hv"]
+size = Vector2(35, 20)
+
+[sub_resource type="Animation" id="Animation_empoa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerDay:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(120, 146)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerDay/QuestionMark:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerDay/QuestionMark:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-4, -31.3333)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerDay/QuestionMark:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PlayerDay/QuestionMark:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_s5fog"]
+resource_name = "opening_animation"
+length = 1.5
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerDay/AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [&"idle_left", 1.0, false],
+"method": &"play"
+}, {
+"args": [&"idle_right", 1.0, false],
+"method": &"play"
+}, {
+"args": [&"idle_front", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerDay")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.43333, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [false],
+"method": &"set_physics_process"
+}, {
+"args": [],
+"method": &"show_dialog"
+}, {
+"args": [true],
+"method": &"set_physics_process"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_oh7vr"]
+resource_name = "opening_animation"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerDay:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.5, 2, 2.5, 3, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(120, 146), Vector2(150, 146), Vector2(150, 146), Vector2(120, 146), Vector2(120, 146)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerDay/AnimatedSprite2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.5, 2, 2.5, 3, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"values": [{
+"args": [&"run_right", 1.0, false],
+"method": &"play"
+}, {
+"args": [&"idle_right", 1.0, false],
+"method": &"play"
+}, {
+"args": [&"run_left", 1.0, false],
+"method": &"play"
+}, {
+"args": [&"idle_left", 1.0, false],
+"method": &"play"
+}, {
+"args": [&"idle_front", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerDay")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3.93333, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [false],
+"method": &"set_physics_process"
+}, {
+"args": [],
+"method": &"show_dialog"
+}, {
+"args": [true],
+"method": &"set_physics_process"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerDay/QuestionMark:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PlayerDay/QuestionMark:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(3.5, 3.56667, 3.63333, 3.7, 3.76667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-4, -31.3333), Vector2(-4.66667, -31.3333), Vector2(-3.4, -34.6667), Vector2(-0.333334, -31.3333), Vector2(-4, -31.3333)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PlayerDay/QuestionMark:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(3.5, 3.56667, 3.7, 3.76667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.143565, 0.18565, 0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("PlayerDay/QuestionMark:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(3.5, 3.63333, 3.76667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.173, 1.173), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_as0jj"]
+_data = {
+"RESET": SubResource("Animation_empoa"),
+"look_around": SubResource("Animation_s5fog"),
+"opening_animation": SubResource("Animation_oh7vr")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7deyp"]
+atlas = ExtResource("8_hvk6s")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oyjfs"]
+atlas = ExtResource("8_hvk6s")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ihcs"]
+atlas = ExtResource("8_hvk6s")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mhl2o"]
+atlas = ExtResource("8_hvk6s")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r6g2f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7deyp")
+}],
+"loop": false,
+"name": &"close",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oyjfs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ihcs")
+}],
+"loop": false,
+"name": &"open",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mhl2o")
+}],
+"loop": false,
+"name": &"opened",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q7fet"]
+size = Vector2(5, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rg62n"]
+size = Vector2(4, 29)
+
+[node name="Game" type="Node2D"]
+
+[node name="Room1" parent="." instance=ExtResource("1_fv2j8")]
+
+[node name="Mirror" parent="Room1" node_paths=PackedStringArray("character") instance=ExtResource("6_imkld")]
+z_index = 1
+position = Vector2(188, 148)
+character = NodePath("../../PlayerDay")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Room1/Mirror"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room1/Mirror/StaticBody2D"]
+position = Vector2(2, -5)
+shape = SubResource("RectangleShape2D_igu4s")
+
+[node name="Actionable" parent="Room1/Mirror" instance=ExtResource("4_epc0u")]
+dialogue_resource = ExtResource("7_oohak")
+dialogue_start = "mirror1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room1/Mirror/Actionable"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_tpaul")
+
+[node name="Room2" parent="." instance=ExtResource("2_07116")]
+position = Vector2(0, 272)
+
+[node name="EnterAnimation" type="Sprite2D" parent="Room2"]
+position = Vector2(229, 153)
+script = ExtResource("3_v5xrb")
+
+[node name="Actionable" parent="Room2/EnterAnimation" instance=ExtResource("4_epc0u")]
+dialogue_resource = ExtResource("5_m6frk")
+dialogue_start = "begin"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room2/EnterAnimation/Actionable"]
+position = Vector2(8, 0)
+shape = SubResource("RectangleShape2D_rl6hv")
+
+[node name="Mirror" parent="Room2" node_paths=PackedStringArray("character") instance=ExtResource("6_imkld")]
+position = Vector2(333, 106)
+character = NodePath("../../PlayerDay")
+
+[node name="Room3" parent="." instance=ExtResource("10_lkum6")]
+position = Vector2(-480, 270)
+
+[node name="DisplayRoom" parent="." instance=ExtResource("8_8db2n")]
+position = Vector2(480, 270)
+
+[node name="PlayerDay" parent="." instance=ExtResource("1_3un87")]
+z_index = 1
+texture_filter = 1
+position = Vector2(120, 146)
+scale = Vector2(0.75, 0.75)
+dialog_resource = ExtResource("7_oohak")
+dialog_start = "title"
+
+[node name="Finder" parent="PlayerDay/Direction" index="0"]
+scale = Vector2(1.37784, 1.37784)
+
+[node name="Camera2D" type="Camera2D" parent="PlayerDay"]
+position = Vector2(-334, -247)
+process_callback = 0
+limit_left = 0
+limit_top = 0
+limit_right = 480
+limit_bottom = 270
+limit_smoothed = true
+position_smoothing_enabled = true
+script = ExtResource("3_mf3ak")
+
+[node name="QuestionMark" type="Label" parent="PlayerDay"]
+visible = false
+texture_filter = 1
+texture_repeat = 1
+offset_left = -4.0
+offset_top = -31.3333
+offset_right = 4.0
+offset_bottom = -8.3333
+theme_override_colors/font_color = Color(0.930369, 0.903031, 0.829305, 1)
+theme_override_colors/font_outline_color = Color(0.282362, 0.154096, 0.0681141, 1)
+theme_override_constants/outline_size = 7
+text = "?"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+process_physics_priority = -1
+callback_mode_method = 1
+libraries = {
+"": SubResource("AnimationLibrary_as0jj")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Introduction" parent="CanvasLayer" node_paths=PackedStringArray("track_camera") instance=ExtResource("9_rumt0")]
+unique_name_in_owner = true
+z_index = 5
+offset_left = -490.0
+offset_top = -267.0
+offset_right = -490.0
+offset_bottom = -267.0
+scale = Vector2(0.5, 0.5)
+track_camera = NodePath("../../PlayerDay/Camera2D")
+
+[node name="Inventory" parent="CanvasLayer" instance=ExtResource("11_15jyv")]
+unique_name_in_owner = true
+
+[node name="LeftDoor2" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, 433)
+sprite_frames = SubResource("SpriteFrames_r6g2f")
+animation = &"open"
+script = ExtResource("9_cfwog")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="LeftDoor2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftDoor2/StaticBody2D"]
+position = Vector2(12.5, -0.5)
+shape = SubResource("RectangleShape2D_q7fet")
+
+[node name="Actionable" parent="LeftDoor2" instance=ExtResource("4_epc0u")]
+dialogue_resource = ExtResource("5_m6frk")
+dialogue_start = "left_door"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftDoor2/Actionable"]
+position = Vector2(13, 0.5)
+shape = SubResource("RectangleShape2D_rg62n")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+visible = false
+color = Color(0, 0, 0, 1)
+energy = 0.31
+blend_mode = 2
+range_z_max = 0
+
+[connection signal="body_entered" from="Room2/EnterAnimation/Actionable" to="Room2/EnterAnimation" method="_on_actionable_body_entered"]
+[connection signal="area_entered" from="PlayerDay/Direction/Finder" to="PlayerDay" method="_on_finder_area_entered"]
+[connection signal="area_exited" from="PlayerDay/Direction/Finder" to="PlayerDay" method="_on_finder_area_exited"]
+
+[editable path="PlayerDay"]
