@@ -1,6 +1,6 @@
 extends Node
 
-const Card = preload("res://scripts/cards/card.gd")
+const CardRes = preload("res://scripts/cards/card.gd")
 
 ## 构建一套新手起始牌组（示例：3攻2防1奶）
 func make_starter_deck() -> Array:
@@ -15,7 +15,7 @@ func make_starter_deck() -> Array:
 
 ## 便捷构造：攻击卡
 func _attack(p: int):
-	var c = Card.new()
+	var c = CardRes.new()
 	c.id = "atk_" + str(p)
 	c.name = "攻击" + str(p)
 	c.type = Card.CardType.ATTACK
@@ -24,7 +24,7 @@ func _attack(p: int):
 
 ## 便捷构造：防御卡（获得护甲）
 func _block(p: int):
-	var c = Card.new()
+	var c = CardRes.new()
 	c.id = "blk_" + str(p)
 	c.name = "防御" + str(p)
 	c.type = Card.CardType.BLOCK
@@ -33,7 +33,7 @@ func _block(p: int):
 
 ## 便捷构造：治疗卡
 func _heal(p: int):
-	var c = Card.new()
+	var c = CardRes.new()
 	c.id = "heal_" + str(p)
 	c.name = "疗伤" + str(p)
 	c.type = Card.CardType.HEAL
