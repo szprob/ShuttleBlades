@@ -32,7 +32,7 @@ func start_battle(start_cards: Array) -> void:
 	deck.draw(5)
 	emit_signal("state_changed")
 
-## 使用一张手牌：检查能量-结算卡牌效果-敌人推进-检查胜负
+## 使用一张手牌（无目标旧接口，保留兼容）
 func play_card(card) -> void:
 	if state.player_energy < card.cost:
 		return
@@ -52,11 +52,30 @@ func play_card(card) -> void:
 	emit_signal("state_changed")
 	_check_end()
 
-## 结束回合：敌人行动 -> 回合重置 -> 抽到手牌上限
-func end_turn() -> void:
+## 新增：使用一张手牌并指定目标（"enemy" 或 "self"）
+func play_card_with_target(card, target: String) -> void:
+	if state.player_energy < card.cost:
+		return
+	state.player_energy -= card.cost
+	match card.type:
+		Card.CardType.ATTACK:
+			# 攻击仅对敌人有效
+			if target == "enemy":
+				_resolve_player_attack(card.power)
+		Card.CardType.BLOCK:
+			# 防御通常作用在自己
+			if target == "self":
+				state.player_block += card.power
+		Card.CardType.HEAL:
+			# 治疗通常作用在自己
+			if target == "self":
+				state.player_hp = min(state.player_hp + card.power, state.player_hp_max)
+		_:
+			# 其他类型默认作用己方（示例）
+			if target == "self":
+				pass
+	deck.discard(card)
 	_process_enemy_turn()
-	state.reset_turn()
-	deck.draw(5 - deck.hand.size())
 	emit_signal("state_changed")
 	_check_end()
 
@@ -92,5 +111,3 @@ func _check_end() -> void:
 		emit_signal("battle_end", true)
 	elif state.is_player_dead():
 		emit_signal("battle_end", false)
-
-
