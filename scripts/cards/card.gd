@@ -5,8 +5,8 @@ extends Resource
 class_name Card
 
 # 卡牌类型：
-# ATTACK 攻击；BLOCK 防御（获得护甲）；HEAL 治疗；UTILITY 功能类（如控制/增益）
-enum CardType { ATTACK, BLOCK, HEAL, UTILITY }
+# ATTACK 攻击；BLOCK 防御（获得护甲）；HEAL 治疗；UTILITY 功能类（如控制/增益）;道具类（如酒）
+enum CardType { ATTACK, BLOCK, HEAL, UTILITY, ITEM }
 
 # 唯一标识（用于存档/升级/商店引用）
 @export var id: String = ""

@@ -13,3 +13,11 @@ config_version=5
 config/name="ShuttleBlades"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Consts="*res://scripts/singleton/consts.gd"
+ItemManager="*res://scripts/singleton/item_manager.gd"
+Resources="*res://scripts/singleton/resources.gd"
+SettingManager="*res://scripts/singleton/setting_manager.gd"
+GameManager="*res://scripts/singleton/game_manager.gd"
