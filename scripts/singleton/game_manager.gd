@@ -12,7 +12,7 @@ var temp_state = {}
 
 func init_state():
 	var state2 = {
-		'play_time_seconds': 0, # 添加游戏时间记录（秒）
+		'need_instruction': true, # 是否需要教程
 	}
 	state = state2.duplicate(true) # 深度复制默认状态
 

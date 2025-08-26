@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cvseym5ftmktl"]
 
 [ext_resource type="Script" uid="uid://dn6yg0vc2d05i" path="res://scripts/main/start.gd" id="1_6omwx"]
+[ext_resource type="AudioStream" uid="uid://bg01uylk64iae" path="res://assets/sounds/ui/button.wav" id="2_tn2g7"]
 [ext_resource type="AudioStream" uid="uid://bqvnblu0y8pke" path="res://assets/sounds/ui/click.wav" id="3_tn2g7"]
-[ext_resource type="AudioStream" path="res://assets/sounds/interface/button.wav" id="5_mr72s"]
 
 [node name="start" type="Node2D" groups=["no_pause", "scan_lines"]]
 position = Vector2(236, 152)
@@ -55,7 +55,7 @@ theme_override_font_sizes/font_size = 48
 text = "QUIT"
 
 [node name="click" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("5_mr72s")
+stream = ExtResource("2_tn2g7")
 
 [node name="Label2" type="Label" parent="."]
 offset_left = 680.0

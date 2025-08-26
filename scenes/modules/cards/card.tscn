@@ -1,0 +1,106 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_ui.gd" id="1"]
+
+[node name="Card" type="Control"]
+custom_minimum_size = Vector2(220, 320)
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource("1")
+
+[node name="Frame" type="NinePatchRect" parent="."]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+patch_margin_left = 24
+patch_margin_top = 24
+patch_margin_right = 24
+patch_margin_bottom = 24
+draw_center = true
+
+[node name="TypeIcon" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 48.0
+offset_bottom = 48.0
+stretch_mode = 3
+
+[node name="Art" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 12.0
+offset_top = 54.0
+offset_right = 208.0
+offset_bottom = 190.0
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 2
+offset_left = 12.0
+offset_top = 198.0
+offset_right = 208.0
+offset_bottom = 224.0
+text = "Card Name"
+horizontal_alignment = 1
+
+[node name="Desc" type="RichTextLabel" parent="."]
+layout_mode = 2
+offset_left = 12.0
+offset_top = 230.0
+offset_right = 208.0
+offset_bottom = 305.0
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+
+[node name="Badges" type="Control" parent="."]
+layout_mode = 2
+offset_right = 220.0
+offset_bottom = 40.0
+
+[node name="DamageBadge" type="Control" parent="Badges"]
+layout_mode = 2
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 64.0
+offset_bottom = 36.0
+
+[node name="DamageBG" type="TextureRect" parent="Badges/DamageBadge"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+modulate = Color(1, 0.4, 0.4, 1)
+
+[node name="DamageLabel" type="Label" parent="Badges/DamageBadge"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BlockBadge" type="Control" parent="Badges"]
+layout_mode = 2
+offset_left = 156.0
+offset_top = 4.0
+offset_right = 216.0
+offset_bottom = 36.0
+
+[node name="BlockBG" type="TextureRect" parent="Badges/BlockBadge"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+modulate = Color(0.4, 0.7, 1, 1)
+
+[node name="BlockLabel" type="Label" parent="Badges/BlockBadge"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
