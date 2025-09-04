@@ -11,11 +11,20 @@ var state = {}
 var temp_state = {}
 
 func init_state():
-	var state2 = {
+	state = {
 		'need_instruction': true, # 是否需要教程
 	}
-	state = state2.duplicate(true) # 深度复制默认状态
-
+	state['player'] = {
+		'name': 'player',
+		'max_hp': 100,
+		'max_mp': 4,
+	}
+	temp_state = {}
+	temp_state['player'] = {
+		'name': 'player',
+		'hp': 100,
+		'mp': 4,
+	}
 
 
 func _ready() -> void:

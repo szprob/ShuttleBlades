@@ -1,21 +1,24 @@
-class_name ItemMnager
 extends Node
 
-var parent: GameManager
+var inventory = {}
+var temp_inventory = {}
 
-var inventory = []
+func _ready() -> void:
+	init_state() # 确保这是第一个调用的函数
 
-func _init(parent_node: Node):
-	parent = parent_node
+func init_state():
+	inventory['cards'] = {'attack1':{"name": "attack", "level": 1},
+	 			'block1':{"name": "block", "level": 1},
+				'heal1':{"name": "heal", "level": 1}}
+	inventory['items'] = {'apple1':{"name": "apple", "count": 1},
+				'banana1':{"name": "banana", "count": 1}}
+	temp_inventory['cards'] = {}
+	temp_inventory['items'] = {}
 
-func add_item(item_name:StringName)->void:
-	inventory.append(item_name)
+func add_item(item_id:StringName, item:Dictionary, item_type:StringName)->void:
+	inventory[item_type][item_id] = item
 
-func use_item(item_name:StringName) -> void:
-	inventory.erase(item_name)
+func delete_item(item_id:StringName, item_type:StringName) -> void:
+	inventory[item_type].erase(item_id)
 
-func has_item(item_name:StringName) -> bool:
-	return inventory.has(item_name)
 
-func get_items() -> Array[StringName]:
-	return Array(inventory, TYPE_STRING_NAME, &"", null)
