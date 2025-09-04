@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dma7isda08un8"]
+
+[node name="Card" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Control" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 120.0
+offset_bottom = 156.0
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_right = 123.0
+offset_bottom = 156.0
+
+[node name="TextureRect" type="TextureRect" parent="Control/ColorRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control/ColorRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 123.0
+offset_bottom = 157.0
